@@ -135,6 +135,27 @@
                     <video width="800" autoplay loop muted playsinline id="teaser">
                         <source src="static/compressed_video.mp4" type="video/mp4" />
                     </video>
+
+                    <script>
+                        // Get the video element
+                        const video = document.getElementById('teaser');
+                        
+                        // Add event listeners for different video states
+                        video.addEventListener('loadedmetadata', setPlaybackSpeed);
+                        video.addEventListener('play', setPlaybackSpeed);
+                        
+                        function setPlaybackSpeed() {
+                            video.playbackRate = 2.0; // Adjust this value to change speed
+                        }
+                        
+                        // Force speed change periodically in case other handlers reset it
+                        setInterval(() => {
+                            if (video.playbackRate !== 2.0) {
+                                video.playbackRate = 2.0;
+                            }
+                        }, 1000);
+                    </script>
+                    
                     <br>
                 </center>
             </td>
